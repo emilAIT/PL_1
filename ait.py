@@ -319,8 +319,23 @@ def get_max4(arr):
             max = i
     return max
 
-print(s)
-print(get_max4(s)) 
+    
+# print(s)
+# print(get_max4(s)) 
+
+def my_split(s, sep):
+    x = ''
+    for c in s:
+        if c != sep:
+            x += c
+        else:
+            print(x)
+            x = ''
+    print('last', x)
+
+s = 'ab,cd,ef,gh,'
+my_split(s, ',')
+
 
 
 
