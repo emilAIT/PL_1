@@ -138,7 +138,7 @@ def distance(p1, p2):
     return (dx ** 2 + dy **2 )**0.5
 
  
-def max(arr):
+def max2(arr):
     mx = arr[0]
     for i in arr:
         if mx < i:
@@ -223,8 +223,8 @@ s = "emilbek bilgazyev"
 x = "sbek"
 #print(has_word(s, x))
 
-print(s.upper())
-print(s.split(' '))
+# print(s.upper())
+# print(s.split(' '))
 
 s = '''
 Հայերեն Shqip ‫العربية Български Català 中文简体 Hrvatski Česky Dansk Nederlands English Eesti Filipino Suomi Français ქართული Deutsch Ελληνικά ‫עברית हिन्दी Magyar Indonesia Italiano Latviski Lietuviškai македонски Melayu Norsk Polski Português Româna Pyccкий Српски Slovenčina Slovenščina Español Svenska ไทย Türkçe Українська Tiếng Việt
@@ -282,8 +282,8 @@ Privacy Policy · Do Not Sell My Personal Information · Change Consent
 
 AD'''
 
-print(has_word(s, 'emil'))
-print(len(s))
+# print(has_word(s, 'emil'))
+# print(len(s))
 words = s.split()
 
 # print(words)
@@ -334,10 +334,245 @@ def my_split(s, sep):
     print('last', x)
 
 s = 'ab,cd,ef,gh,'
-my_split(s, ',')
+# my_split(s, ',')
+
+
+from random import randint
+
+def experiment(N):
+    arr = [0]*13
+    varr = [0, 0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1]
+    for i in range(N):
+        d1 = randint(1, 6)
+        d2 = randint(1, 6)
+        d = d1 + d2
+        arr[d] += 1
+
+    for k, (i, j) in enumerate(zip(arr, varr)):
+        print(k, i/N - j/36, i, i)
 
 
 
+# for N in [10, 100, 1000, 10000, 1000000, 10000000]:
+#     print("*****", N, "******")
+#     experiment(N)
+
+s = "a, b, cd, efg, abkg, abcdef"
+# print(s.split())
+# print(max(s.split(), key = lambda i:len(i)))
 
 
+# arr = (1, 2)
+# arr[0] = 2
+# print(arr)
+
+
+
+# #print(min_value([1,2,3,4]))
+# # arr = list(range(10))
+# # print(arr)
+# # print(arr[:5:-1])
+# # print(arr[5:2:-3])
+# # print(arr[::2])
+# # print(arr[::-2])
+
+
+# # arr = [1, 2, 3]
+# # arr.append(1, 5)
+# # print(arr)
+
+
+# salary = 8000
+
+# def printSalary():
+#   salary = 12000
+#   print("Salary:", salary)
+
+# def printSalary2():
+#   #salary = 10000
+#   print("Salary:", salary)
+  
+# printSalary()
+# print("Salary:", salary)
+# printSalary2()
+
+
+from random import randint
+
+#print([randint(1, 18) for i in range(3)])
+
+
+def f(arr):
+    x = 0
+    for diana in arr:
+        if diana < x:
+            x = diana
+    return x
+
+arr = [1,2,3,2]
+#print('result:', f(arr))
+
+
+# s = "emil bilgazyev"
+# s[3], s[1] = s[2], s[5]
+#print(s)
+
+
+def f2(arr):
+    x = 1
+    for user, index in enumerate(arr):
+        if user == x:
+            print(index)
+
+arr = [1,2,3,2,1,5,6,2]
+#f2(arr)
+
+def f3(arr):
+    max = 0
+    for index in arr:
+        if len(index) < max:
+            max = len(index)
+    return max
+
+arr = ['abc', 'bc', 'd', 'ab']
+#print(f3(arr))
+
+arr1 = [1,2,3,1,2]
+arr2 = [1,2,2]
+
+def f4(arr1, arr2):
+    result = []
+    for val1, i in enumerate(arr1):
+        for val2, j in enumerate(arr2):
+            if i == j:
+                result = [val1, val2]
+    return result
+
+#print(f4(arr1, arr2))
+
+
+arr1 = [1,2,3,3,4]
+arr2 = [2,3,5,5,5]
+
+
+#print((set(arr2) - set(arr1)))
+#print(arr2(2))
+#print( (set(arr1) & set(arr2(2))) | (set(arr2) - set(arr1)) )
+
+# def f():
+    # return 1
+
+# x = input('val1: ')
+# y = input('val2: ')
+# print('result:', max(x, y))
+
+x = [1,2,3,4,5,6]
+y = [0,0,0,0,0]
+
+x[0], y[1] = x[2], y[0]
+#print(x)
+
+arr = [1,2,3,4,5,2,1,6,2]
+#print('before', arr)
+for i in range(len(arr)):
+    for j in range(len(arr)):
+        if arr[i] < arr[j]:
+            arr[i], arr[j] = arr[j], arr[i]
+
+#print('after', arr)
+
+arr1 = list(range(1,19))
+from random import shuffle
+
+arr2 = list(range(1,19))
+shuffle(arr2)
+#print(list(zip(arr1,arr2)))
+
+from random import randint
+
+val1 = randint(0,10)
+val2 = randint(0,10)
+
+# s1 = "{} plus {} equals {}".format(val1, val2, val1+val2)
+# s2 = f"{val1} plus {val2} equals {val1+val2}"
+# print(s1)
+# print(s2)
+
+
+# fb = open("secondfile.txt", "w")
+
+# for i in range(100):
+#     val1 = randint(0,10)
+#     val2 = randint(0,10)
+#     s2 = f"{val1}+{val2}=\n"
+#     fb.write(s2)
+
+# fb.close()
+
+
+# fb = open("C:/Users/bekem/Downloads/testfile.xyz", "r")
+# for x in fb:
+#     print(x)
+# fb.close()
+
+
+
+# fb = open("file2.py", "r")
+# fnew = open('fil2_new.py', "w")
+
+# for x in fb:
+#     x = x.replace("arr", "massive")
+#     fnew.write(x)
+
+
+
+code = """
+from random import randint
+def calc():
+    a = int(input("Input first value:"))
+    b = int(input("Input second value:"))
+    x = a + b
+    s = f'{a} + {b} = '
+    result = int(input(s))
+    if result == x:
+       print("Pravilno")
+    else:
+       print("HEEEEEEET")
+
+while True: `
+  calc()
+"""
+
+# fb = open('C:/Users/bekem/Downloads/aziz.py', 'w')
+# fb.write(code)
+# fb.close()
+
+
+def maxValue(arr):
+    mx = arr[0]
+    for i in arr:
+        if i > mx:
+            mx = i
+    return mx
+
+arr = [1,2,4,2]
+
+if maxValue(arr) == 4:
+    print("Manual test correct")
+else:
+    print("Manual Test incorrect")
+
+
+for i in range(1,4):
+    fb = open(f'C:/Users/bekem/Downloads/tests/test_{i}.txt', 'r')
+    line = fb.read()
+    first, second = line.split('\n')
+    s_arr = first.split(',')
+    arr = [int(i) for i in s_arr]
+    max_val = int(second)
+    print(arr, max_val)
+    if max_val == maxValue(arr):
+        print(f"test_{i}.txt passed")
+    else:
+        print(f"test_{i}.txt failed!!!")
 

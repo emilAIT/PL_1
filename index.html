@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Quiz</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        /* Increase font size for labels */
+        label {
+            font-size: 80px;
+        }
+
+        /* Increase font size for result and button text */
+        #result, button {
+            font-size: 58px;
+        }
+
+        /* Add space between buttons */
+        button {
+            margin: 30px;
+        }
+
+        /* Style for the list of checkboxes */
+        .checkbox-list {
+            text-align: left;
+            margin-left: 40px;
+            font-size: 58px;
+        }
+
+        /* Style for the checkboxes and labels */
+        .checkbox-list input[type="checkbox"] {
+            margin-right: 5px;
+            font-size: 58px;
+        }
+
+        /* Style for the checkboxes and labels */
+        .checkbox-list input[type="checkbox"] {
+            width: 24px; /* Adjust the width to make the checkbox larger */
+            height: 24px; /* Adjust the height to make the checkbox larger */
+            margin-right: 5px;
+            font-size: 18px;
+        }
+        
+        /* Style for the labels associated with checkboxes */
+        .checkbox-list label {
+            font-size: 58px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Math Quiz</h1>
+    <div>
+        <label id="num1"></label>
+        <label> <span id="operator"></span> </label>
+        <label id="num2"></label>
+        <label> = </label>
+        <span id="result"></span>
+    </div>
+    <br>
+    <button id="button1" class="answer-button"></button>
+    <button id="button2" class="answer-button"></button>
+    <button id="button3" class="answer-button"></button>
+    <button id="button4" class="answer-button"></button>
+    <br>
+    <button id="continueButton">Next question</button>
+
+    <!-- Updated checkbox list -->
+    <div class="checkbox-list">
+        <input type="checkbox" id="plusCheckbox" checked>
+        <label for="plusCheckbox">+</label>
+        <br>
+        <input type="checkbox" id="minusCheckbox" checked>
+        <label for="minusCheckbox">-</label>
+        <br>
+        <input type="checkbox" id="multiplyCheckbox" checked>
+        <label for="multiplyCheckbox">*</label>
+        <br>
+        <input type="checkbox" id="divideCheckbox" checked>
+        <label for="divideCheckbox">/</label>
+    </div>
+
+    <script>
+        // Function to generate a random number between min and max
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Function to randomly select an operator based on checkboxes
+        function getRandomOperator() {
+            const operators = [];
+            if (document.getElementById("plusCheckbox").checked) {
+                operators.push('+');
+            }
+            if (document.getElementById("minusCheckbox").checked) {
+                operators.push('-');
+            }
+            if (document.getElementById("multiplyCheckbox").checked) {
+                operators.push('*');
+            }
+            if (document.getElementById("divideCheckbox").checked) {
+                operators.push('/');
+            }
+
+            return operators[Math.floor(Math.random() * operators.length)];
+        }
+
+        // Function to update the question
+        function updateQuestion() {
+            const operator = getRandomOperator();
+
+            let num1, num2;
+            if (operator === '+') {
+                num1 = getRandomNumber(0, 9);
+                num2 = getRandomNumber(0, 9);
+            } else if (operator === '-') {
+                num1 = getRandomNumber(10, 19); // Ensures num1 is greater
+                num2 = getRandomNumber(0, 9);
+            } else if (operator === '*') {
+                num1 = getRandomNumber(0, 9);
+                num2 = getRandomNumber(0, 9);
+            } else if (operator === '/') {
+                // Ensure num1 is divisible by num2 and num2 is not zero
+                num2 = getRandomNumber(1, 9);
+                num1 = num2 * getRandomNumber(0, 9);
+            }
+
+            // Display random numbers and operator in labels
+            document.getElementById("num1").textContent = num1;
+            document.getElementById("num2").textContent = num2;
+            document.getElementById("operator").textContent = operator;
+
+            // Calculate the correct answer
+            let correctAnswer;
+            switch (operator) {
+                case '+':
+                    correctAnswer = num1 + num2;
+                    break;
+                case '-':
+                    correctAnswer = num1 - num2;
+                    break;
+                case '*':
+                    correctAnswer = num1 * num2;
+                    break;
+                case '/':
+                    correctAnswer = num1 / num2;
+                    break;
+            }
+
+            // Generate random numbers for buttons
+            const buttonNumbers = [];
+            for (let i = 0; i < 4; i++) {
+                let num;
+                do {
+                    num = getRandomNumber(0, 9);
+                } while (buttonNumbers.includes(num) || num === correctAnswer);
+                buttonNumbers.push(num);
+            }
+
+            // Randomly assign the correct answer to one of the buttons
+            const randomButtonIndex = Math.floor(Math.random() * 4);
+            buttonNumbers[randomButtonIndex] = correctAnswer;
+
+            // Display numbers on buttons
+            const buttons = document.querySelectorAll(".answer-button");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].textContent = buttonNumbers[i];
+            }
+
+            // Clear the result
+            document.getElementById("result").textContent = "";
+        }
+
+        // Function to check the answer
+        function checkAnswer(selectedAnswer, correctAnswer) {
+            if (parseFloat(selectedAnswer.textContent) === correctAnswer) {
+                document.getElementById("result").textContent = "Correct!";
+            } else {
+                document.getElementById("result").textContent = "Incorrect!";
+            }
+        }
+
+        // Attach an event listener to the "Continue" button
+        document.getElementById("continueButton").addEventListener("click", function () {
+            updateQuestion();
+        });
+
+        // Attach event listeners to answer buttons
+        const answerButtons = document.querySelectorAll(".answer-button");
+        for (let i = 0; i < answerButtons.length; i++) {
+            answerButtons[i].addEventListener("click", function () {
+                const num1 = parseFloat(document.getElementById("num1").textContent);
+                const num2 = parseFloat(document.getElementById("num2").textContent);
+                const operator = document.getElementById("operator").textContent;
+                let correctAnswer;
+
+                // Calculate the correct answer based on the operator
+                switch (operator) {
+                    case '+':
+                        correctAnswer = num1 + num2;
+                        break;
+                    case '-':
+                        correctAnswer = num1 - num2;
+                        break;
+                    case '*':
+                        correctAnswer = num1 * num2;
+                        break;
+                    case '/':
+                        correctAnswer = num1 / num2;
+                        break;
+                }
+
+                checkAnswer(this, correctAnswer);
+            });
+        }
+
+        // Initial question setup
+        updateQuestion();
+    </script>
+</body>
+</html>
