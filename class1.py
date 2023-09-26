@@ -563,16 +563,59 @@ else:
     print("Manual Test incorrect")
 
 
-for i in range(1,4):
-    fb = open(f'C:/Users/bekem/Downloads/tests/test_{i}.txt', 'r')
-    line = fb.read()
-    first, second = line.split('\n')
-    s_arr = first.split(',')
-    arr = [int(i) for i in s_arr]
-    max_val = int(second)
-    print(arr, max_val)
-    if max_val == maxValue(arr):
-        print(f"test_{i}.txt passed")
-    else:
-        print(f"test_{i}.txt failed!!!")
+# for i in range(1,4):
+#     fb = open(f'C:/Users/bekem/Downloads/tests/test_{i}.txt', 'r')
+#     line = fb.read()
+#     first, second = line.split('\n')
+#     s_arr = first.split(',')
+#     arr = [int(i) for i in s_arr]
+#     max_val = int(second)
+#     print(arr, max_val)
+#     if max_val == maxValue(arr):
+#         print(f"test_{i}.txt passed")
+#     else:
+#         print(f"test_{i}.txt failed!!!")
 
+
+# fb = open('input.txt', 'r')
+# fb_hacked = open('hacked.txt', 'w')
+# line = fb.read()
+# words = line.split()
+
+# res = []
+# for word in words:
+#     res.append(word[::-1])
+
+# fb_hacked.write(' '.join(res))
+
+    
+# print([randint(1,19) for i in range(2)])
+
+def mymax(sub_str):
+    sarr = sub_str.split(",")
+    x = []
+    for i in sarr:
+        x.append(int(i))
+    return max(x)
+
+# print("mymax 1,5,2", mymax("1,5,2"))
+
+fin = open('input.txt', 'r')
+fout  = open('output.txt', 'w')
+line = fin.readlines()
+out = []
+for i in line:
+    stripped_i = i.strip()
+    x = f"{stripped_i},{mymax(stripped_i)}"
+    out.append(x)
+print(out)
+fout.write('\n'.join(out))
+
+
+
+# s = '         emil  \n\n\n    '
+# print(s)
+# print(len(s))
+# stripped_s = s.strip()
+# print(stripped_s)
+# print(len(stripped_s))
