@@ -717,51 +717,159 @@
 #     print(name, arr, sum(arr), max(arr), len(arr), myavg(arr), sum(arr)/len(arr))
 
 
+# import csv
+# reader_students = csv.reader(open(f"students.txt"))
+# reader_classes = csv.reader(open(f"classes.txt"))
+# reader_classes_taken= csv.reader(open(f"taken.txt"))
+
+# stud = list(reader_students)
+# print('students', stud)
+
+# students = [(id, name) for id, name in reader_students]
+# classes = [(id, class_name) for id, class_name in reader_classes]
+# taken = [[student_id, class_id] for student_id, class_id, year in reader_classes_taken]
+
+# ### HOW MANY CLASSES EACH STUDENT TOOK?
+# arr = []
+# for sid, name in students:
+#     taken_classes = []
+#     all_classes = set([id for id, name in classes])
+#     for student_id, class_id in taken:
+#         if sid == student_id:
+#             taken_classes.append(class_id) 
+#     print(name, len(taken_classes))
+#     print(name, taken_classes)
+#     non_taken_classes = all_classes - set(taken_classes)
+#     print(name, non_taken_classes)
+#     print(name, [classes[int(id)][1] for id in non_taken_classes])
+
+
+# print()
+# ### FOR EACH CLASS HOW MANY STUDENTS TAKEN? 
+# arr = []
+# for id, class_name in classes:
+#     count = 0
+#     for student_id, class_id in taken:
+#         if class_id == id:
+#             count += 1
+#     print(class_name, count)
+#     #arr.append((clas_name, count))
+# ## open("classes_taken.txt").write("\n".join(arr))
+
+
+# print()
+# ### FOR EACH STUDENT WHICH CLASSES DIDNT TAKE?
+# for sid, name in students:
+#     all_classes = set([id for id, name in classes])
+#     #taken_classes = set()
+#     for student_id, class_id in taken:
+#         if sid == student_id:
+#             all_classes.remove(class_id)
+#         #taken_classes.add(class_id)
+#     print(name, [classes[int(i)][1] for i in all_classes])
+#     #print(name, all_classes - taken_classes)
+
+
+
+# import csv
+# trans = list(csv.reader(open("transactions.txt")))
+# valuta = 'usd,kzt,euro,rubl'.split(',')
+# x = 0
+# for cur in valuta:
+#     count = 0
+#     balance = 0
+#     for val, amount, cost in trans:
+#         if cur == val:
+#             count += 1
+#             balance += int(amount)
+#     print(f"{cur}:, count={count}, balance={balance}")
+
+
+
+# # get max value index
+# def get_max_index(arr):
+#     min_index = 0
+#     for i, val in enumerate(arr):
+#         if abs(int(arr[min_index][2])) < abs(int(val[2])):
+#             min_index = i
+#     return min_index
+
+
+# som = 10000
+# for i, (val, amount, cost) in enumerate(trans):
+#     if x < abs(int(cost)):
+#         x = abs(int(cost))
+#         id = i
+#     som += int(cost)
+
+# som = 10000
+
+# max_index = get_max_index(trans)
+# print('get_max_index:', trans[max_index])
+# print('som', som)
+# print('max transaction:', trans[id])
+
+
+
+### 1. avg time per student
+### 2. who was late in certain date
+### 3. how many times student was late (per student)
+### 4. how many times the student missed the classes? 
+
+
 import csv
-reader_students = csv.reader(open("students.txt"))
-reader_classes = csv.reader(open("classes.txt"))
-reader_classes_taken= csv.reader(open("taken.txt"))
-
-students = [(id, name) for id, name in reader_students]
-classes = [(id, class_name) for id, class_name in reader_classes]
-taken = [[student_id, class_id] for student_id, class_id, year in reader_classes_taken]
-
-### HOW MANY CLASSES EACH STUDENT TOOK?
-arr = []
-for sid, name in students:
-    taken_classes = []
-    all_classes = set([id for id, name in classes])
-    for student_id, class_id in taken:
-        if sid == student_id:
-            taken_classes.append(class_id) 
-    print(name, len(taken_classes))
-    print(name, taken_classes)
-    non_taken_classes = all_classes - set(taken_classes)
-    print(name, non_taken_classes)
-    print(name, [classes[int(id)][1] for id in non_taken_classes])
+timetable = list(csv.reader(open("timetable.txt")))
+students = set([name for name, x, y in timetable]) or set(['emil'])
+dates = set([date for name, date, time in timetable])
 
 
-print()
-### FOR EACH CLASS HOW MANY STUDENTS TAKEN? 
-arr = []
-for id, class_name in classes:
+def avg_time(arr):
+    if len(arr):
+        s = 0
+        for hour, minute in arr:
+            s+= hour * 60 + minute
+        avg = s / len(arr)
+        return f'{int(avg / 60)}:{int(avg % 60)}'
+
+
+def late_count(arr, time):
     count = 0
-    for student_id, class_id in taken:
-        if class_id == id:
-            count += 1
-    print(class_name, count)
-    #arr.append((clas_name, count))
-## open("classes_taken.txt").write("\n".join(arr))
-print()
-### FOR EACH STUDENT WHICH CLASSES DIDNT TAKE?
+    if len(arr):
+        hour, minute = time.split(':')
+        threshold = int(hour) * 60 + int(minute)
+        for hour, minute in arr:
+            t = hour * 60 + minute
+            if t > threshold:
+                count += 1
+        return count
 
-for sid, name in students:
-    all_classes = set([id for id, name in classes])
-    #taken_classes = set()
-    for student_id, class_id in taken:
-        if sid == student_id:
-            all_classes.remove(class_id)
-        #taken_classes.add(class_id)
-    print(name, [classes[int(i)][1] for i in all_classes])
-    #print(name, all_classes - taken_classes)
+def who_was_late(arr, time, input_date):
+    late_students = []
+    hour, minute = time.split(':')
+    threshold = int(hour) * 60 + int(minute)
+    for name, date, time in arr:
+        hour, minute = time.split(':')
+        t = int(hour) * 60 + int(minute)
+        if input_date == date and t > threshold:
+            print(name, date, time)
+
+
+def filter_table(arr, student_name):
+    sub_arr = []
+    attended_dates = set()
+
+    for name, date, time in arr:
+        if name == student_name:
+            hour, minute = time.split(':')
+            sub_arr.append((int(hour), int(minute)))
+            attended_dates.add(date)
+    print(student_name, 'missed dates', dates - attended_dates)
+    print(student_name, 'avg time', avg_time(sub_arr))
+    print(student_name, 'was late', late_count(sub_arr, '10:00'))
+
+for student_name in students:
+    filter_table(timetable, student_name)
+
+print('LATE STUDENTS')
+who_was_late(timetable, '10:05', '2023-10-10')
 
