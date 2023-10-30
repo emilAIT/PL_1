@@ -977,40 +977,56 @@ def median(arr):
 # toc = time()
 # print(toc - tic)
 
+### EXAM 10/30/23
+
+# from collections import defaultdict
+# import csv
+# d = defaultdict(list)
+# student = {}
+# lines = csv.reader(open("student_list_27.txt", 'r'))
+# class_reader = list(csv.reader(open("class_list_28.txt", 'r')))
+# class_name = {cl_id:cl_name for cl_id, cl_name, credits in class_reader}
+# class_credits = {cl_id: int(credits) for cl_id, cl_name, credits in class_reader}
+# for st_id, st_name, year, semester, cl_id in lines:
+#     d[st_id].append((year, cl_id))
+#     student[st_id] = st_name
 
 
-from collections import defaultdict
-import csv
-d = defaultdict(list)
-student = {}
-lines = csv.reader(open("student_list_27.txt", 'r'))
-class_reader = list(csv.reader(open("class_list_28.txt", 'r')))
-class_name = {cl_id:cl_name for cl_id, cl_name, credits in class_reader}
-class_credits = {cl_id: int(credits) for cl_id, cl_name, credits in class_reader}
-for st_id, st_name, year, semester, cl_id in lines:
-    d[st_id].append((year, cl_id))
-    student[st_id] = st_name
+# medians = []
+# ## avg per student
+# for st_id, arr in d.items():
+#     credits = [class_credits[cl_id] for year, cl_id in arr]
+#     print(student[st_id], 'average', sum(credits) / len(credits))
+#     print(student[st_id], 'missing credits', 240 - sum(credits))
+#     taken_classes = defaultdict(int)
+#     for year, cl_id in arr:
+#         taken_classes[year] += class_credits[cl_id]
+#     print(student[st_id], 'min', min(taken_classes.values()))
+#     print(student[st_id], 'max', max(taken_classes.values()))
+#     medians.append(median(credits))
+
+# given_student_id = input('insert student_id : ')
+# taken_classes = [class_name[cl_id] for year, cl_id in d[given_student_id]]
+# print(student[given_student_id], 'take classes', taken_classes)
+
+# print('median of median credits', median(medians))
 
 
-medians = []
-## avg per student
-for st_id, arr in d.items():
-    credits = [class_credits[cl_id] for year, cl_id in arr]
-    print(student[st_id], 'average', sum(credits) / len(credits))
-    print(student[st_id], 'missing credits', 240 - sum(credits))
-    taken_classes = defaultdict(int)
-    for year, cl_id in arr:
-        taken_classes[year] += class_credits[cl_id]
-    print(student[st_id], 'min', min(taken_classes.values()))
-    print(student[st_id], 'max', max(taken_classes.values()))
-    medians.append(median(credits))
-
-given_student_id = input('insert student_id : ')
-taken_classes = [class_name[cl_id] for year, cl_id in d[given_student_id]]
-print(student[given_student_id], 'take classes', taken_classes)
-
-print('median of median credits', median(medians))
+from random import randint
 
 
+def my_random():
+    x = randint(0,9)
+    cnt = 1
+    while x > 6:
+        x = randint(0,9)
+        cnt += 1
+    return cnt
+
+mx = 0
+for i in range(1000000):
+    mx = max(mx, my_random())
+
+print(mx)
 
 
