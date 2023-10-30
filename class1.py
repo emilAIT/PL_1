@@ -23,13 +23,13 @@
 
 
 # # get middle value in an array
-# def median(arr):
-#     arr = sorted(arr)
-#     mid = len(arr) // 2    # int(len(arr)/2)
-#     if mid*2 == len(arr):
-#         return sum(arr[mid-1 : mid+1])/2
-#     else:
-#         return arr[mid]
+def median(arr):
+    arr = sorted(arr)
+    mid = len(arr) // 2    # int(len(arr)/2)
+    if mid*2 == len(arr):
+        return sum(arr[mid-1 : mid+1])/2
+    else:
+        return arr[mid]
     
 
 
@@ -817,59 +817,200 @@
 ### 4. how many times the student missed the classes? 
 
 
+# import csv
+# timetable = list(csv.reader(open("timetable.txt")))
+# students = set([name for name, x, y in timetable]) or set(['emil'])
+# dates = set([date for name, date, time in timetable])
+
+
+# def avg_time(arr):
+#     if len(arr):
+#         s = 0
+#         for hour, minute in arr:
+#             s+= hour * 60 + minute
+#         avg = s / len(arr)
+#         return f'{int(avg / 60)}:{int(avg % 60)}'
+
+
+# def late_count(arr, time):
+#     count = 0
+#     if len(arr):
+#         hour, minute = time.split(':')
+#         threshold = int(hour) * 60 + int(minute)
+#         for hour, minute in arr:
+#             t = hour * 60 + minute
+#             if t > threshold:
+#                 count += 1
+#         return count
+
+# def who_was_late(arr, time, input_date):
+#     late_students = []
+#     hour, minute = time.split(':')
+#     threshold = int(hour) * 60 + int(minute)
+#     for name, date, time in arr:
+#         hour, minute = time.split(':')
+#         t = int(hour) * 60 + int(minute)
+#         if input_date == date and t > threshold:
+#             print(name, date, time)
+
+
+# def filter_table(arr, student_name):
+#     sub_arr = []
+#     attended_dates = set()
+
+#     for name, date, time in arr:
+#         if name == student_name:
+#             hour, minute = time.split(':')
+#             sub_arr.append((int(hour), int(minute)))
+#             attended_dates.add(date)
+#     print(student_name, 'missed dates', dates - attended_dates)
+#     print(student_name, 'avg time', avg_time(sub_arr))
+#     print(student_name, 'was late', late_count(sub_arr, '10:00'))
+
+# for student_name in students:
+#     filter_table(timetable, student_name)
+
+# print('LATE STUDENTS')
+# who_was_late(timetable, '10:05', '2023-10-10')
+
+
+# ### sales.txt, calculate profit for certain day
+# ### no dictionary
+
+# import csv
+# items = list(csv.reader(open("sales.txt")))
+
+# purchased_items = []
+# for date, name, quantity, price in items:
+#     if int(quantity) > 0:
+#         purchased_items.append((name, price))
+
+# def get_price(purchased_items, name):
+#     for item_name, item_price in purchased_items:
+#         if name == item_name:
+#             return int(item_price)
+# input_date = input('insert the date:')    
+# viruchka = 0
+# for date, name, quantity, sale_price in items:
+#     if int(quantity) < 0 and date == input_date:
+#         purchase_price = get_price(purchased_items, name)
+#         print(quantity, purchase_price, int(sale_price))
+#         viruchka +=(purchase_price - int(sale_price)) * int(quantity)
+# print("Viruchka : ", viruchka)
+
+
+
+### sales.txt, calculate profit for certain day
+### no dictionary
+
+# import csv
+# items = list(csv.reader(open("sales.txt")))
+# d = {name:int(price) for d, name, q, price in items if int(q) > 0}
+# res = [(d[n] - int(p)) * int(q) for dt, n, q, p in items if int(q) < 0 and dt == '2.10.23']
+# print("Viruchka : ", sum(res))
+
+
+# from random import randint
+
+# x = '9999999999999999999999999999999999999'
+# x += x
+# x += x
+# t = ''.join([x + str(randint(0,9)) for i in range(100000)])
+# s = '6666' + x + '9999'
+# t += s
+
+# from time import time
+
+# print(len(t), len(s))
+# tic = time()
+# for i in range(len(t)):
+#     if s == t[i:i+len(s)]:
+#         print(i)
+# toc = time()
+# print(toc - tic)
+
+
+### OBMENKA
+
+# import csv
+# d = {}
+# lines = csv.reader(open("obmenka.txt", "r"))
+
+# for curr, quan, price in lines:
+#     if curr not in d:
+#         d[curr] = []
+#     d[curr].append((int(quan), float(price)))
+
+# print(d)
+
+
+# for curr in d:
+#     arr = d[curr]
+#     quantity_buy = sum([a for a, b in arr if a > 0])
+#     quantity_sell = sum([a for a, b in arr if a < 0])
+#     buy_cost = sum([a*b for a, b in arr if a > 0])
+#     sell_cost = sum([a*b for a, b in arr if a < 0])
+#     avg_b = buy_cost/quantity_buy
+#     avg_s = sell_cost/ quantity_sell
+#     print(curr, avg_b, avg_s, quantity_sell*(avg_b-avg_s), quantity_buy, quantity_sell)
+
+# def func1(arr):
+#     for i in arr:
+#         if 40 - i in arr:
+#             return True
+
+# def func2(arr):
+#     d = {}
+#     for i in arr:
+#         if 40 - i in d:
+#             return True
+#         d[i] = True
+    
+# from time import time
+# from random import randint
+# arr = [randint(0,10) for i in range(10**6)]
+# arr = arr + [20,20]
+
+# tic = time()
+# #a = func1(arr)
+# a = func2(arr)
+# toc = time()
+# print(toc - tic)
+
+
+
+from collections import defaultdict
 import csv
-timetable = list(csv.reader(open("timetable.txt")))
-students = set([name for name, x, y in timetable]) or set(['emil'])
-dates = set([date for name, date, time in timetable])
+d = defaultdict(list)
+student = {}
+lines = csv.reader(open("student_list_27.txt", 'r'))
+class_reader = list(csv.reader(open("class_list_28.txt", 'r')))
+class_name = {cl_id:cl_name for cl_id, cl_name, credits in class_reader}
+class_credits = {cl_id: int(credits) for cl_id, cl_name, credits in class_reader}
+for st_id, st_name, year, semester, cl_id in lines:
+    d[st_id].append((year, cl_id))
+    student[st_id] = st_name
 
 
-def avg_time(arr):
-    if len(arr):
-        s = 0
-        for hour, minute in arr:
-            s+= hour * 60 + minute
-        avg = s / len(arr)
-        return f'{int(avg / 60)}:{int(avg % 60)}'
+medians = []
+## avg per student
+for st_id, arr in d.items():
+    credits = [class_credits[cl_id] for year, cl_id in arr]
+    print(student[st_id], 'average', sum(credits) / len(credits))
+    print(student[st_id], 'missing credits', 240 - sum(credits))
+    taken_classes = defaultdict(int)
+    for year, cl_id in arr:
+        taken_classes[year] += class_credits[cl_id]
+    print(student[st_id], 'min', min(taken_classes.values()))
+    print(student[st_id], 'max', max(taken_classes.values()))
+    medians.append(median(credits))
+
+given_student_id = input('insert student_id : ')
+taken_classes = [class_name[cl_id] for year, cl_id in d[given_student_id]]
+print(student[given_student_id], 'take classes', taken_classes)
+
+print('median of median credits', median(medians))
 
 
-def late_count(arr, time):
-    count = 0
-    if len(arr):
-        hour, minute = time.split(':')
-        threshold = int(hour) * 60 + int(minute)
-        for hour, minute in arr:
-            t = hour * 60 + minute
-            if t > threshold:
-                count += 1
-        return count
 
-def who_was_late(arr, time, input_date):
-    late_students = []
-    hour, minute = time.split(':')
-    threshold = int(hour) * 60 + int(minute)
-    for name, date, time in arr:
-        hour, minute = time.split(':')
-        t = int(hour) * 60 + int(minute)
-        if input_date == date and t > threshold:
-            print(name, date, time)
-
-
-def filter_table(arr, student_name):
-    sub_arr = []
-    attended_dates = set()
-
-    for name, date, time in arr:
-        if name == student_name:
-            hour, minute = time.split(':')
-            sub_arr.append((int(hour), int(minute)))
-            attended_dates.add(date)
-    print(student_name, 'missed dates', dates - attended_dates)
-    print(student_name, 'avg time', avg_time(sub_arr))
-    print(student_name, 'was late', late_count(sub_arr, '10:00'))
-
-for student_name in students:
-    filter_table(timetable, student_name)
-
-print('LATE STUDENTS')
-who_was_late(timetable, '10:05', '2023-10-10')
 
