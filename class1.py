@@ -1012,21 +1012,332 @@ def median(arr):
 # print('median of median credits', median(medians))
 
 
-from random import randint
+# from random import randint
 
 
-def my_random():
-    x = randint(0,9)
-    cnt = 1
-    while x > 6:
-        x = randint(0,9)
-        cnt += 1
-    return cnt
+# def my_random():
+#     x1 = randint(0,9)
+#     x2 = randint(0,9)
+#     x = x1 * 10 + x2
+#     d = x // 7
+#     y = d * 7
 
-mx = 0
-for i in range(1000000):
-    mx = max(mx, my_random())
+#     cnt = 1
+#     while x > y:
+#         cnt, x = my_random()
+#         cnt += 1
+#     return cnt, d
 
-print(mx)
+# mx = 0
+# for i in range(1000000):
+#     mx = max(mx, my_random())
+
+# print(mx)
 
 
+# class my_set():
+#     def __init__(self, arr):
+#         self.data = []
+#         for i in arr:
+#             self.my_add(i)
+    
+#     def my_add(self, i):
+#         if i not in self.data:
+#             self.data.append(i)
+#             self.my_sort()
+    
+#     def show(self):
+#         print(self.data)
+    
+#     def compare(self, obj, n=-1):
+#         return self.data[:n] == obj.data[:n]
+
+#     def my_sort(self):
+#         self.data = sorted(self.data)
+    
+#     def show_cubes(self):
+#         for i in self.data:
+#             print(i**3, end=',')
+#         print()
+    
+# s = my_set([3,3,3,3,3,1,2])
+# s.show()
+# s.my_add(5)
+# s.show()
+
+# s.my_add(2)
+# s.show()
+
+# s.show_cubes()
+
+# print(len(s))
+
+# class Unit():
+#     def __init__(self, input):
+#         self.value = input
+#         self.left = None
+#         self.right = None
+
+
+# arr = [7, 11, 2, 3, 8, 18, 13, 21, 4, 32, 31, 45]
+
+# root = Unit(7)
+# root.right = Unit(11)
+# root.left = Unit(2)
+# root.left.right = Unit(3)
+# root.right.left = Unit(8)
+# root.right.right = Unit(18)
+# root.right.right.left = Unit(13)
+# root.right.right.right = Unit(21)
+# root.left.right.right = Unit(4)
+# root.right.right.right.right = Unit(32)
+# root.right.right.right.right.left = Unit(31)
+# root.right.right.right.right.right = Unit(45)
+
+
+# def bek(root):
+#     if not root:
+#         return
+#     bek(root.left)
+#     print(root.value, end = ', ')
+#     bek(root.right)
+
+
+# def nus(curr_unit, input):
+#     if not curr_unit:
+#         return Unit(input)
+    
+#     if curr_unit.value > input:
+#         curr_unit.left = nus(curr_unit.left, input)
+#     else:
+#         curr_unit.right = nus(curr_unit.right, input)
+
+#     return curr_unit
+    
+# root = None
+# for i in arr:
+#     root = nus(root, i)
+
+
+# bek(root)
+
+
+
+# result = defaultdict(list)
+# def groups(graph, source, group_id):
+#     visited = set()
+#     for destination in graph[source]:
+#         if destination not in visited:
+#             visited.add(destination)
+#             result[group_id].append(destination)
+#             groups(graph, destination, group_id)
+
+# cnt = 0
+# for src in graph:
+#     groups(graph, src, cnt)
+#     cnt += 1
+            
+
+# from time import time
+
+# class Group():
+    
+#     def __init__(self, name, description = ""):
+#         if len(name) > 0:
+#             self.name = name
+#         else:
+#             self.name = "HEEEEEEEET"
+#         self.members = []
+#         self.admins = []
+#         self.created_time = time()
+#         self.description = description
+
+#     def get_name(self):
+#         return self.name.upper()
+    
+#     def set_name(self, name):
+#         if len(name) > 0:
+#             self.name = name
+    
+#     def get_description(self):
+#         return self.description 
+    
+#     def set_description(self, description):
+#         self.description = description
+
+#     def remove(self, user):
+#         self.members.remove(user)
+    
+#     def add(self, user):
+#         self.members.append(user)
+
+#     def add_admin(self, user):
+#         if user in self.members and user not in self.admins:
+#             self.admins.append(user)
+    
+#     def remove_admin(self, user):
+#         if user in self.admins:
+#             self.admins.remove(user)
+    
+#     def show_info(self):
+#         print("******", self.name.upper(), "*****")
+#         print("members", self.members)
+#         print("admins", self.admins)
+#         print()
+
+#     def __len__(self):
+#         return len(self.name)
+    
+#     def len(self):
+#         return len(self.name)
+
+# arr = ["Inter", "Real Madrid", "Barcelona", "Arsenal", "Dordoi", "Semetey", ""]
+
+# groups = {}
+
+# for name in arr:
+#     groups[name] = Group(name)
+
+# groups['Real Madrid'].add("Ronaldo")
+# groups['Barcelona'].add('Messi')
+# groups['Dordoi'].add("Baymatov")
+# groups['Arsenal'].add("arshavin")
+
+
+# for name in groups:
+#     groups[name].show_info()
+
+# group = Group("Emil")
+# group.show_info()
+# print(len(group))
+# print(group.len())
+
+
+### FEQUENCY PLOT
+# from math import log2
+# from random import randint
+# from collections import defaultdict
+
+# salaries = []
+# for j in range(50):
+#     count = randint(0, 100000)
+#     avg = randint(0, 10000)
+#     salaries += [randint(avg, avg+200) for i in range(count)]
+
+
+# d = defaultdict(int)
+# for i in salaries:
+#     d[i//200] += 1
+
+# frequencies = sorted(d.items())
+# for k, v in frequencies:
+#     print('%05d'%((k+1)*200), "*"*int(log2(v)+1))
+from time import time, strftime
+class Client:
+    def __init__(self, name, telnumber, amount):
+        self.balance = amount
+        self.name = name
+        self.telnumber = telnumber
+        self.data = []
+    
+    def deduct(self, date, amount):
+        self.balance -= amount
+        self.data.append([date, amount])
+    
+    def show_balance(self):
+        print("*"*30)
+        print(f"Client={self.name}'s balance")
+        print(self.balance)
+        print("*"*30)
+
+    def show_payments(self):
+        print("*"*20)
+        print(f"Client={self.name} payments history")
+        for i in self.data:
+            print(i)
+        print("*"*20)
+        
+    def show_payments_between_interval(self, start, end):
+        print(f"Client = {self.name}'s payments for the period of {start} and {end}")
+        for date, amount in self.data:
+            if start <= date <= end:
+                print(date, amount)
+
+
+
+
+
+bank = {}
+bank['bek'] = Client("Bekbolsun", "0555757555", 10000)
+bank['saadat'] = Client('Saadat', "0777555577", 3000)
+bank['bek'].deduct('2023-09-01', 2000)
+bank['bek'].deduct('2023-09-05', 1000)
+bank['saadat'].deduct('2023-10-01', 100)
+
+bank['bek'].show_balance()
+bank['bek'].show_payments()
+bank['bek'].show_payments_between_interval('2023-09-03', '2023-09-15')
+
+bank['akbar'] = Client("Akbar", "0777898933", 5000)
+bank['saadat'].deduct("2023-10-01", 2000)
+bank['saadat'].show_balance()
+
+
+from time import time
+
+items = {}
+def get_item(barcode):
+    if barcode in items:
+        return items[barcode]
+
+class Item:
+    def __init__(self, barcode, name, expiration_date, sell_cost):
+        self.barcode = barcode
+        self.name = name
+        self.expiration_date = expiration_date
+        self.sell_cost = sell_cost
+
+    def get_barcode(self):
+        return self.barcode
+
+    def get_name(self):
+        return self.name
+    
+
+class Basket:
+    def __init__(self):
+        self.items = {}
+        self.time = time()
+        self.cost = 0
+        self.quantity = 0
+        self.item_quantity = {}
+    
+    def add(self, barcode, quantity=1):
+        self.item_quantity[barcode] += quantity
+        self.quantity += quantity
+        self.cost += get_item(barcode).cost * quantity
+    
+    def remove(self, barcode, quantity=1):
+        if barcode in self.item_quantity:
+            if self.item_quantity[barcode] == quantity:
+                del self.item_quantity[barcode]
+                self.cost -= get_item(barcode).cost * quantity
+
+            elif self.item_quantity[barcode] > quantity:
+                self.item_quantity[barcode] -= quantity
+                self.cost -= get_item(barcode).cost * quantity
+    
+    def print_check(self):
+        print("*"*10, "CHECK", "*"*10)
+        for barcode, quantity in self.item_quantity.item():
+            print(barcode, get_item(barcode).get_name(), quantity)
+        print("Total quantity:", self.quantity)
+        print("Total cost:", self.cost)
+
+
+
+
+    
+
+
+    
