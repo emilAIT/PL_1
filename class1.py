@@ -1232,107 +1232,228 @@ def median(arr):
 # frequencies = sorted(d.items())
 # for k, v in frequencies:
 #     print('%05d'%((k+1)*200), "*"*int(log2(v)+1))
-from time import time, strftime
-class Client:
-    def __init__(self, name, telnumber, amount):
-        self.balance = amount
-        self.name = name
-        self.telnumber = telnumber
-        self.data = []
-    
-    def deduct(self, date, amount):
-        self.balance -= amount
-        self.data.append([date, amount])
-    
-    def show_balance(self):
-        print("*"*30)
-        print(f"Client={self.name}'s balance")
-        print(self.balance)
-        print("*"*30)
 
-    def show_payments(self):
-        print("*"*20)
-        print(f"Client={self.name} payments history")
-        for i in self.data:
-            print(i)
-        print("*"*20)
+
+
+### BANK CLIENT
+# from time import time, strftime
+# class Client:
+#     def __init__(self, name, telnumber, amount):
+#         self.balance = amount
+#         self.name = name
+#         self.telnumber = telnumber
+#         self.data = []
+    
+#     def deduct(self, date, amount):
+#         self.balance -= amount
+#         self.data.append([date, amount])
+    
+#     def show_balance(self):
+#         print("*"*30)
+#         print(f"Client={self.name}'s balance")
+#         print(self.balance)
+#         print("*"*30)
+
+#     def show_payments(self):
+#         print("*"*20)
+#         print(f"Client={self.name} payments history")
+#         for i in self.data:
+#             print(i)
+#         print("*"*20)
         
-    def show_payments_between_interval(self, start, end):
-        print(f"Client = {self.name}'s payments for the period of {start} and {end}")
-        for date, amount in self.data:
-            if start <= date <= end:
-                print(date, amount)
+#     def show_payments_between_interval(self, start, end):
+#         print(f"Client = {self.name}'s payments for the period of {start} and {end}")
+#         for date, amount in self.data:
+#             if start <= date <= end:
+#                 print(date, amount)
 
 
 
 
 
-bank = {}
-bank['bek'] = Client("Bekbolsun", "0555757555", 10000)
-bank['saadat'] = Client('Saadat', "0777555577", 3000)
-bank['bek'].deduct('2023-09-01', 2000)
-bank['bek'].deduct('2023-09-05', 1000)
-bank['saadat'].deduct('2023-10-01', 100)
+# bank = {}
+# bank['bek'] = Client("Bekbolsun", "0555757555", 10000)
+# bank['saadat'] = Client('Saadat', "0777555577", 3000)
+# bank['bek'].deduct('2023-09-01', 2000)
+# bank['bek'].deduct('2023-09-05', 1000)
+# bank['saadat'].deduct('2023-10-01', 100)
 
-bank['bek'].show_balance()
-bank['bek'].show_payments()
-bank['bek'].show_payments_between_interval('2023-09-03', '2023-09-15')
+# bank['bek'].show_balance()
+# bank['bek'].show_payments()
+# bank['bek'].show_payments_between_interval('2023-09-03', '2023-09-15')
 
-bank['akbar'] = Client("Akbar", "0777898933", 5000)
-bank['saadat'].deduct("2023-10-01", 2000)
-bank['saadat'].show_balance()
+# bank['akbar'] = Client("Akbar", "0777898933", 5000)
+# bank['saadat'].deduct("2023-10-01", 2000)
+# bank['saadat'].show_balance()
 
 
-from time import time
 
-items = {}
-def get_item(barcode):
-    if barcode in items:
-        return items[barcode]
+# ### SHOP
+# from time import time
 
-class Item:
-    def __init__(self, barcode, name, expiration_date, sell_cost):
-        self.barcode = barcode
+# items = {}
+# def get_item(barcode):
+#     if barcode in items:
+#         return items[barcode]
+
+# class Item:
+#     def __init__(self, barcode, name, expiration_date, sell_cost):
+#         self.barcode = barcode
+#         self.name = name
+#         self.expiration_date = expiration_date
+#         self.sell_cost = sell_cost
+
+#     def get_barcode(self):
+#         return self.barcode
+
+#     def get_name(self):
+#         return self.name
+    
+
+# class Basket:
+#     def __init__(self):
+#         self.items = {}
+#         self.time = time()
+#         self.cost = 0
+#         self.quantity = 0
+#         self.item_quantity = {}
+    
+#     def add(self, barcode, quantity=1):
+#         self.item_quantity[barcode] += quantity
+#         self.quantity += quantity
+#         self.cost += get_item(barcode).cost * quantity
+    
+#     def remove(self, barcode, quantity=1):
+#         if barcode in self.item_quantity:
+#             if self.item_quantity[barcode] == quantity:
+#                 del self.item_quantity[barcode]
+#                 self.cost -= get_item(barcode).cost * quantity
+
+#             elif self.item_quantity[barcode] > quantity:
+#                 self.item_quantity[barcode] -= quantity
+#                 self.cost -= get_item(barcode).cost * quantity
+    
+#     def print_check(self):
+#         print("*"*10, "CHECK", "*"*10)
+#         for barcode, quantity in self.item_quantity.item():
+#             print(barcode, get_item(barcode).get_name(), quantity)
+#         print("Total quantity:", self.quantity)
+#         print("Total cost:", self.cost)
+
+from time import time, sleep, strftime
+from datetime import datetime
+
+
+
+def my_sleep():
+    seconds = randint(0, 5)
+    print('Sleeping for ', seconds, 'seconds')
+    sleep(seconds)
+
+
+class Valuta:
+    def __init__(self, name, amount=0, avg_buy=0, avg_sell=0):
         self.name = name
-        self.expiration_date = expiration_date
-        self.sell_cost = sell_cost
+        self.avg_buy = avg_buy
+        self.avg_sell = avg_sell
+        self.amount = amount
+        self.sell_amount = 0
+        self.history = []
 
-    def get_barcode(self):
-        return self.barcode
+    
+    def buy(self, amount, rate):
+        print('Buying: ', self.name, amount, rate)
+        self.avg_buy = (self.amount*self.avg_buy + amount * rate) / (self.amount + amount)
+        self.amount += amount
+        self.history.append([datetime.now(), amount, rate])
+    
+    def sell(self, amount, rate):
+        print('Selling: ', self.name, amount, rate)
+        self.avg_sell = (self.sell_amount*self.avg_sell + amount * rate) / (self.sell_amount + amount)
+        self.amount -= amount
+        self.sell_amount += amount
+        self.history.append([datetime.now(), -amount, rate])
 
-    def get_name(self):
-        return self.name
+    def show_profit(self):
+        profit = (self.avg_sell - self.avg_buy) * self.sell_amount
+        print('Profit for ',self.name, profit)
+        return profit
     
+    def show_history(self):
+        print('Showing history for', self.name)
+        for ts, amount, rate in self.history:
+            print(ts.strftime('%H:%M:%S'), amount, rate)
 
-class Basket:
-    def __init__(self):
-        self.items = {}
-        self.time = time()
-        self.cost = 0
-        self.quantity = 0
-        self.item_quantity = {}
-    
-    def add(self, barcode, quantity=1):
-        self.item_quantity[barcode] += quantity
-        self.quantity += quantity
-        self.cost += get_item(barcode).cost * quantity
-    
-    def remove(self, barcode, quantity=1):
-        if barcode in self.item_quantity:
-            if self.item_quantity[barcode] == quantity:
-                del self.item_quantity[barcode]
-                self.cost -= get_item(barcode).cost * quantity
+from random import randint
 
-            elif self.item_quantity[barcode] > quantity:
-                self.item_quantity[barcode] -= quantity
-                self.cost -= get_item(barcode).cost * quantity
+class Obemka:
+    def __init__(self, name):
+        self.data = {}
+        self.name = name
     
-    def print_check(self):
-        print("*"*10, "CHECK", "*"*10)
-        for barcode, quantity in self.item_quantity.item():
-            print(barcode, get_item(barcode).get_name(), quantity)
-        print("Total quantity:", self.quantity)
-        print("Total cost:", self.cost)
+    def buy(self, valuta, amount, rate):
+        if valuta in self.data:
+            self.data[valuta].buy(amount, rate)
+
+    
+    def sell(self, valuta, amount, rate):
+        if valuta in self.data:
+            self.data[valuta].sell(amount, rate)
+    
+    def add_valuta(self, name):
+        self.data[name] = Valuta(name)
+
+    def show_profit(self):
+        print()
+        total = 0
+        for name, valuta_obj in self.data.items():
+            total += valuta_obj.show_profit()
+        print('Total profit: ' , total)
+
+    def show_history(self):
+        print()
+        for name, obj in self.data.items():
+            obj.show_history()
+
+
+obmenka = Obemka('BEKObmen')
+obmenka.add_valuta('dollar')
+obmenka.buy('dollar', 100, 89.5)
+my_sleep()
+obmenka.buy('dollar',500, 89.6)
+my_sleep()
+obmenka.sell('dollar',100, 89.8)
+my_sleep()
+obmenka.buy('dollar',1000, 89.65)
+my_sleep()
+obmenka.sell('dollar',1500, 89.75)
+
+obmenka.add_valuta('euro')
+obmenka.buy('euro', 100, 100)
+my_sleep()
+obmenka.sell('euro', 50, 101)
+my_sleep()
+obmenka.add_valuta('rubl')
+obmenka.buy('rubl', 1000, .89)
+obmenka.sell('rubl', 500, .91)
+
+
+obmenka.add_valuta('kzt')
+obmenka.buy('kzt', 1000, 0.03)
+my_sleep()
+obmenka.buy('kzt', 5000, 0.04)
+my_sleep()
+obmenka.sell('kzt', 2000, 0.05)
+
+obmenka.show_profit()
+obmenka.show_history()
+
+
+
+
+
+
+
 
 
 
