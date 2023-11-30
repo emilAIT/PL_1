@@ -1340,125 +1340,802 @@ def median(arr):
 #         print("Total quantity:", self.quantity)
 #         print("Total cost:", self.cost)
 
-from time import time, sleep, strftime
-from datetime import datetime
+# from time import time, sleep, strftime
+# from datetime import datetime
 
 
 
-def my_sleep():
-    seconds = randint(0, 5)
-    print('Sleeping for ', seconds, 'seconds')
-    sleep(seconds)
+# def my_sleep():
+#     seconds = randint(0, 5)
+#     print('Sleeping for ', seconds, 'seconds')
+#     sleep(seconds)
 
 
-class Valuta:
-    def __init__(self, name, amount=0, avg_buy=0, avg_sell=0):
-        self.name = name
-        self.avg_buy = avg_buy
-        self.avg_sell = avg_sell
-        self.amount = amount
-        self.sell_amount = 0
-        self.history = []
+# class Valuta:
+#     def __init__(self, name, amount=0, avg_buy=0, avg_sell=0):
+#         self.name = name
+#         self.avg_buy = avg_buy
+#         self.avg_sell = avg_sell
+#         self.amount = amount
+#         self.sell_amount = 0
+#         self.history = []
 
     
-    def buy(self, amount, rate):
-        print('Buying: ', self.name, amount, rate)
-        self.avg_buy = (self.amount*self.avg_buy + amount * rate) / (self.amount + amount)
-        self.amount += amount
-        self.history.append([datetime.now(), amount, rate])
+#     def buy(self, amount, rate):
+#         print('Buying: ', self.name, amount, rate)
+#         self.avg_buy = (self.amount*self.avg_buy + amount * rate) / (self.amount + amount)
+#         self.amount += amount
+#         self.history.append([datetime.now(), amount, rate])
     
-    def sell(self, amount, rate):
-        print('Selling: ', self.name, amount, rate)
-        self.avg_sell = (self.sell_amount*self.avg_sell + amount * rate) / (self.sell_amount + amount)
-        self.amount -= amount
-        self.sell_amount += amount
-        self.history.append([datetime.now(), -amount, rate])
+#     def sell(self, amount, rate):
+#         print('Selling: ', self.name, amount, rate)
+#         self.avg_sell = (self.sell_amount*self.avg_sell + amount * rate) / (self.sell_amount + amount)
+#         self.amount -= amount
+#         self.sell_amount += amount
+#         self.history.append([datetime.now(), -amount, rate])
 
-    def show_profit(self):
-        profit = (self.avg_sell - self.avg_buy) * self.sell_amount
-        print('Profit for ',self.name, profit)
-        return profit
+#     def show_profit(self):
+#         profit = (self.avg_sell - self.avg_buy) * self.sell_amount
+#         print('Profit for ',self.name, profit)
+#         return profit
     
-    def show_history(self):
-        print('Showing history for', self.name)
-        for ts, amount, rate in self.history:
-            print(ts.strftime('%H:%M:%S'), amount, rate)
+#     def show_history(self):
+#         print('Showing history for', self.name)
+#         for ts, amount, rate in self.history:
+#             print(ts.strftime('%H:%M:%S'), amount, rate)
+
+# from random import randint
+
+# class Obemka:
+#     def __init__(self, name):
+#         self.data = {}
+#         self.name = name
+    
+#     def buy(self, valuta, amount, rate):
+#         if valuta in self.data:
+#             self.data[valuta].buy(amount, rate)
+
+    
+#     def sell(self, valuta, amount, rate):
+#         if valuta in self.data:
+#             self.data[valuta].sell(amount, rate)
+    
+#     def add_valuta(self, name):
+#         self.data[name] = Valuta(name)
+
+#     def show_profit(self):
+#         print()
+#         total = 0
+#         for name, valuta_obj in self.data.items():
+#             total += valuta_obj.show_profit()
+#         print('Total profit: ' , total)
+
+#     def show_history(self):
+#         print()
+#         for name, obj in self.data.items():
+#             obj.show_history()
+
+
+# obmenka = Obemka('BEKObmen')
+# obmenka.add_valuta('dollar')
+# obmenka.buy('dollar', 100, 89.5)
+# my_sleep()
+# obmenka.buy('dollar',500, 89.6)
+# my_sleep()
+# obmenka.sell('dollar',100, 89.8)
+# my_sleep()
+# obmenka.buy('dollar',1000, 89.65)
+# my_sleep()
+# obmenka.sell('dollar',1500, 89.75)
+
+# obmenka.add_valuta('euro')
+# obmenka.buy('euro', 100, 100)
+# my_sleep()
+# obmenka.sell('euro', 50, 101)
+# my_sleep()
+# obmenka.add_valuta('rubl')
+# obmenka.buy('rubl', 1000, .89)
+# obmenka.sell('rubl', 500, .91)
+
+
+# obmenka.add_valuta('kzt')
+# obmenka.buy('kzt', 1000, 0.03)
+# my_sleep()
+# obmenka.buy('kzt', 5000, 0.04)
+# my_sleep()
+# obmenka.sell('kzt', 2000, 0.05)
+
+# obmenka.show_profit()
+# obmenka.show_history()
+
+# class Glasses:
+#     def aziz(self):
+#         self.glass_frame = None
+#         self.glass_size = None
+#         self.optics = None
+#         self.glass_type = None
+#         self.glass_is_polorized = None
+#         self.glass_country_of_origin = None
+#         self.cost = None
+    
+#     def __init__(self):
+#         self.aziz()
+
+# class Shoe:
+#     def __init__(self):
+#         self.shoe_size = None
+#         self.shoe_type = None
+#         self.shoe_season = None
+#         self.shoe_color = None
+#         self.shoe_country_of_origin = None
+#         self.shoe_cost = None
+
+# class Hair:
+#     def __init__(self):
+#         self.hair = None
+#         self.hair_length = None
+#         self.hair_color = None
+#         self.hair_is_painted = None
+#         self.hair_last_time_trimmed = None
+
+
+# class Person:
+#     def __init__(self, lastname = None, name = None):
+#         self.name = name
+#         self.lastname = lastname
+#         self.glasses = None
+#         self.shoe = None
+#         self.hair = None
+
+#     def set_name(self, name):
+#         self.name = name
+    
+#     def set_lastname(self, lastname):
+#         self.lastname = lastname
+
+#     def set_shoe_size(self, size):
+#         if not self.shoe:
+#             self.shoe = Shoe()
+        
+#         self.shoe.shoe_size = size
+    
+#     def set_shoe_color(self, color):
+#         if not self.shoe:
+#             self.shoe = Shoe()
+#         self.shoe.color = color
+
+#     def set_shoe(self, input_shoe):
+#         self.shoe = input_shoe
+
+#     def show(self):
+#         print(f'First name : {self.name}\nLast name: {self.lastname}\n')
+    
+
+
+# krasovka = Shoe()
+# krasovka.shoe_color = 'Black'
+# krasovka.cost = 1500
+# krasovka.shoe_size = 42
+
+
+
+# c = Person('Saadat', 'YUZ')
+# c.show()
+# c.set_shoe(krasovka)
+
+
+# a = Person()
+# a.set_name('Saadat')
+# a.set_lastname('YUZ')
+# b = Person()
+
+# a.show()
+# a.set_name('Nuskaim')
+# a.set_lastname('XYZ')
+# a.show()
+
+
+# class Class:
+#     def __init__(self, id, name, credits = 3, limit = 2):
+#         self.id = id
+#         self.name = name
+#         self.limit = limit
+#         self.count = 0
+#         self.credits = credits
+    
+# class Student:
+#     def __init__(self):
+#         self.info = {}
+#         self.classes = {}
+#         self.last = None
+#         self.first = None
+#         self.limit = 3
+#         self.credit_limit = 18
+
+#     def set(self, param, value):
+#         self.info[param] = value
+
+#     def add_class(self, year, enrolled_class):
+#         if enrolled_class.limit > 0 and self.limit > 0 and self.credit_limit >= enrolled_class.credits:
+#             self.classes[enrolled_class.id] = enrolled_class
+#             self.last = enrolled_class
+#             if  self.first is None:
+#                 self.first = enrolled_class
+#             enrolled_class.limit -= 1
+#             self.limit -= 1
+#             self.credit_limit -= enrolled_class.credits
+#             print(f'{self.info["name"]} was successfully enrolled to {enrolled_class.name}, {enrolled_class.limit - enrolled_class.count} has left')
+#         elif enrolled_class.limit == 0:
+#             print(f'{enrolled_class.name} has a limit of {enrolled_class.limit}')
+#         elif self.limit == 0:
+#             print(f'{self.info["name"]} has reached the limit of classes')
+#         elif self.credit_limit < enrolled_class.credits:
+#             print(f'{self.info["name"]} cannot take {enrolled_class.name} who has {enrolled_class.credits} credits which is more than {self.credit_limit}')
+
+#     def get_first_last_class(self):
+#         return self.first, self.last
+
+#     def remove_class(self, class_id):
+#         self.classes.pop(class_id)
+    
+#     def print(self):
+#         print(self.info)
+#         print(self.classes.keys())
+
+
+# x = Student()
+# x.set('name', 'Bekbolsun')
+
+# class101 = Class(101, 'Programming Language', 12)
+# class201 = Class(201, 'Statistics', 6)
+# class202 = Class(202, 'Operating System', 7)
+# class102 = Class(102, 'Discrete mathematics', 6)
+
+# y = Student()
+# y.set('name', 'Saadat')
+# z = Student()
+# z.set('name', 'Aziz')
+
+# x.add_class(2023, class101)
+# x.add_class(2023, class201)
+# x.add_class(2023, class202)
+
+# y.add_class(2023, class101)
+
+# z.add_class(2023, class201)
+# z.add_class(2023, class202)
+# z.add_class(2023, class102)
+# z.add_class(2023, class101)
+
+
+##### Probability distribution
+# from random import randint
+# from matplotlib import pyplot as plt
+# import math
+
+# tmp = []
+# N = 200
+# arr = [0]*(N+1)
+# for i in range(100000):
+#     s = sum([randint(0, 1) for j in range(N)])
+#     tmp.append(s)
+#     arr[s] += 1
+
+# avg = sum(tmp)/len(tmp)
+# var = sum([(avg - i)**2 for i in tmp])**0.5/N
+
+# arr2 = [0]*N
+# for x in range(N):
+#     arr2[x] = 1/(var*(2*math.pi))*math.exp2(-1/2*((x-avg)/var)**2)
+
+
+# #plt.plot(arr, color='red')
+# plt.plot(arr2, color='green')
+# plt.show()
+
+
+### Stadium 
+# from time import time
+# class Ticket:
+#     def __init__(self, cost) -> None:
+#         self.timestamp = time
+#         self.cost = cost
+
+#     def show_info(self):
+#         print(f'Ticket was sold in store for {self.cost} price')
+# class User:
+#     def __init__(self):
+#         self.name = None
+#         self.lastname = None
+#         self.email = None
+#         self.dateofbirth = None
+#         self.phone = None
+
+#     def show_info(self):
+#         print(f'Name:{self.name}, Lastname:{self.lastname}, DOB:{self.dateofbirth}, email:{self.email}')
+
+# class Seat:
+#     def __init__(self):
+#         self.material = None
+#         self.color = None
+#         self.type = None
+    
+#     def show_info(self):
+#         print(f'Type:{self.type}, material:{self.material}')
+
+
+# class TicketingSystem:
+#     def __init__(self, timestamp):
+#         self.name = None
+#         self.prices = None
+#         self.users = {}
+#         self.seats = {}
+#         self.prices = {}
+#         self.data = {}
+#         self.sold = 0
+#         self.max_capacity = 0
+#         self.eventdate = timestamp
+#         self.discounts = []
+    
+#     def add_discounts(self, days_limit, discount):
+#         self.discounts.append((days_limit, discount))
+
+#     def add_seat(self, info, default_price = 500, quantity = 1):
+#         for i in range(quantity):
+#             seat_id = len(self.seats)
+#             self.seats[seat_id] = info
+#             self.max_capacity += 1
+#             self.prices[seat_id] = default_price
+
+#     def add_user(self, user_info):
+#         self.users[len(self.users)] = user_info
+
+#     def users_info(self):
+#         for user_id, user_info in self.users.items():
+#             print(user_id)
+#             user_info.show_info()
+#         print()
+
+#     def get_discount(self):
+#         arr = sorted(self.discounts, reversed=True)
+#         for days, discount in arr:
+#             if self.eventdate - time() > days*24*60*60:
+#                 return discount 
+#         return 0
+    
+#     def show_seats(self):
+#         for id, info in self.seats.items():
+#             if id not in self.data:
+#                 print(id)
+#                 info.show_info()
+#                 print()
+    
+#     def buy_ticket_online(self, seat_id, user_id, price):
+#         if seat_id not in self.data:
+#             self.data[seat_id] = (user_id, price)
+#             self.sold += 1
+#         else:
+#             print(f'Seat: {seat_id} is already sold to user {self.data[seat_id]}')
+#             print()
+    
+#     def buy_ticket_in_store(self, seat_id, cost):
+#         if seat_id not in self.data:
+#             self.data[seat_id] = Ticket(cost)
+#             self.sold += 1
+
+#     def show_seat_id(self, seat_id):
+#         if seat_id in self.data.items():
+#             user_id = self.data[seat_id]
+#             print(f'Seat: {seat_id} was sold to')
+#             self.users[user_id].show_info()
+#             print()
+
+
+
+# stadion = TicketingSystem(time() + 60*60*24*20)
+
+# stadion.add_discounts(15, 50)
+# stadion.add_discounts(10, 30)
+# stadion.add_discounts(5, 20)
+
+
+# user1 = User()
+# user1.name = 'Bek'
+# user1.email = 'bek@gmail.com'
+
+# user2 = User()
+# user2.name = 'Aziz'
+# user2.phone = '0555773334'
+
+# user3 = User()
+# user3.name = 'Asan'
+# user3.email = 'asan@yahoo.com'
+
+# stadion.add_user(user1)
+# stadion.add_user(user2)
+# stadion.add_user(user3)
+
+# seat1 = Seat()
+# seat1.type = 'Economy'
+
+# seat2 = Seat()
+# seat2.type = 'VIP'
+
+# stadion.add_seat(seat1)
+# stadion.add_seat(seat2)
+
+
+
+
+
+# stadion.buy_ticket_in_store(0, 50)
+
+
+
+# for i in range(5):
+#     stadion.show_seats()
+#     seat_id = int(input('Seat id:'))
+#     stadion.users_info()
+#     user_id = int(input('User id:'))
+#     discount = stadion.get_discount()
+#     price = stadion.prices[seat_id]
+#     stadion.buy_ticket_online(seat_id, user_id, price*discount)
+#     stadion.show_seat_id(seat_id)
+
+
+# ### LIBRARY
+# class User:
+#     def __init__(self,id,name,phone):
+#         self.id = id
+#         self.name = name
+#         self.phone = phone
+#         self.firstname = name
+
+#     def show_info(self):
+#         print(f"ID:{self.id},Name:{self.name},Phone:{self.phone}")
+
+
+# class Book:
+#     def __init__(self, name, book_id, autor, year):
+#         self.name = name
+#         self.book_id = book_id
+#         self.autor = autor
+#         self.year = year
+    
+#     def show_info(self):
+#         print(f"ID {self.book_id}, name: {self.name}, autor: {self.autor}, year: {self.year}")
+
+# class library:
+#     def __init__(self, name):
+#         self.name = name
+#         self.books = {}
+#         self.users = {}
+#         self.user_last_id = 0
+#         self.data={}
+#         self.booklog = []
+        
+#     def add_book(self, autor, name, year):
+#         self.books[len(self.books)] = Book(name,len(self.books),autor,year)
+        
+#     def add_user(self, name, phone):
+#         self.user_last_id += 1
+#         self.users[self.user_last_id] = User(self.user_last_id, name, phone)
+
+#     def taken_book(self,book_id,user_id):
+#             if user_id not in self.data:
+#                 self.data[user_id]=[]
+#             self.data[user_id].append(book_id)
+#             self.booklog.append(book_id)
+
+#     def user_info(self, userid):
+#         if userid in self.users:
+#             self.users[userid].show_info()
+#             if userid in self.data:
+#                 for book in self.data[userid]:
+#                     self.books[book].show_info()
+#         else:
+#             print('User is not in the DataBase')
+
+#     def ShowaAvaliavility(self,BID):
+#         if BID in self.booklog:
+#             print(f"Book {BID} is already taken")
+#         else:
+#             print(f"Book {BID} is free to rent")
+
+
+# class Item:
+#     def __init__(self, brand, price, weight, location):
+#         self.brand = brand
+#         self.price = price
+#         self.weight = weight
+#         self.location = location
+    
+#     def get_location(self, location):
+#         return self.location
+
+#     def set_location(self, location):
+#         self.location = location
+
+
+#     def show_info(self):
+#         pass
+
+# class Car_v1(Item):
+#     def set_cartype(self, type):
+#         self.car_type = type
+    
+#     def set_color(self, color):
+#         self.color = color
+
+#     def show_info(self):
+#         print(self.brand, self.price, self.weight, self.location, self.car_type, self.color)
+
+
+# class Car_v2(Item):
+#     def __init__(self, brand, price, weight, location, type, color):
+#         super().__init__(brand, price, weight, location)
+#         self.color = color
+#         self.car_type = type
+    
+#     def show_info(self):
+#         print(self.brand, self.price, self.weight, self.location, self.car_type, self.color)
+
+
+# class Shampoo(Item):
+#     def __init__(self, brand, price, weight, location, compound, gender):
+#         super().__init__(brand, price, weight, location)
+#         self.gender = gender
+#         self.compound = compound
+
+#     def show_info(self):
+#         print(self.brand, self.price, self.weight, self.location, self.gender, self.compound)
+
+
+# class TShirt(Item):
+#     def __init__(self, brand, price, weight, location, material):
+#         super().__init__(brand, price, weight, location)
+#         self.material = material
+
+#     def show_info(self):
+#         print(self.brand, self.price, self.weight, self.location, self.material)
+
+
+# def add_item(cart, item):
+#     cart.append(item)
+
+
+# def move(cart, location):
+#     for item in cart:
+#         item.set_location(location)
+
+
+# car = Car_v2("BMW", 5000, 1500, "Bishkek", "sedan", "black")
+# tshirt = TShirt("nike", 15, 0.1, "Bishkek", "cotton")
+# shampoo = Shampoo("Clear", 5, 1, "Bishkek", "water", "male")
+# tshirt2 = TShirt("adidas", 50, 0.1, "Bishkek", "silk")
+# cart = []
+# add_item(cart, car)
+# add_item(cart, tshirt)
+# add_item(cart, shampoo)
+# add_item(cart, tshirt2)
+
+# move(cart, "Almaty")
+
+
+# tshirt2.show_info()
+
+
+
+# import sys
+# from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QLineEdit
+
+# class AIT(QWidget):
+
+#     def __init__(self):
+#         super().__init__()
+
+#         self.label = QLabel("0")
+#         self.edit = QLineEdit("0")
+
+#         self.button = QPushButton("Increment")
+#         self.button.clicked.connect(self.increment_label)
+
+#         self.button2 = QPushButton("Koshup koy")
+#         self.button2.clicked.connect(self.koshupkoy)
+
+#         layout = QVBoxLayout()
+#         layout.addWidget(self.label)
+#         layout.addWidget(self.button)
+#         layout.addWidget(self.edit)
+#         layout.addWidget(self.button2)
+
+#         self.setLayout(layout)
+#         self.setWindowTitle("Counter")
+#         self.show()
+    
+#     def koshupkoy(self):
+#         azirki = int(self.edit.text())
+#         labeltext = int(self.label.text())
+#         self.label.setText(str(azirki + labeltext))
+
+#     def increment_label(self):
+#         count = int(self.label.text())
+#         count += 1
+#         self.label.setText(str(count))
+
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     counter = AIT()
+#     sys.exit(app.exec_())
+
+
+
+
+
+# class Item:
+#     def __init__(self, name, price):
+#         self.name = name
+#         self.price = price
+#         self.description = f'{name} : {price}'
+#         self.english = self.translate(name, 'kyrgyz')
+#         self.russian = self.translate(name, 'russian')
+    
+        
+#     def translate(self, original, to_lang):
+#         pass
+
+#     def get_price(self):
+#         return self.price
+
+# class Shampoo(Item):
+#     def __init__(self, name, price, gender):
+#         super().__init__(name, price)
+#         self.gender = gender
+
+# class Skirt(Item):
+#     def __init__(self, name, price, color):
+#         self.name = name
+#         self.price = price
+#         self.color = color
+
+# def total_cost(basket):
+#     return sum([item.get_price() for item in basket])
+
+# def add_item(basket, item):
+#     basket.append(item)
+
+# def total_count(basket):
+#     return len(basket)
+
+# basket = []
+# shampoo = Shampoo("Dove", 100, "male")
+# skirt = Skirt("Dior", 15000, "black")
+# add_item(basket, shampoo)
+# add_item(basket, skirt)
+
+
+# print(total_cost(basket), total_count(basket))
+
+
+
+# class Tripod(Item):
+#     def __init__(self, name, price, length):
+#         super().__init__(name, price)
+#         self.length = length
+    
+
+# tripod = Tripod("Marafon", 1000, "silver")
+
+
+
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QLineEdit
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QFont
 
 from random import randint
 
-class Obemka:
-    def __init__(self, name):
-        self.data = {}
-        self.name = name
+class AIT(QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        self.label1 = self.create_label("label 1")
+        self.label2 = self.create_label("label 2")
+        self.equal = self.create_label('=')
+        self.operator = self.create_label("")
+
+        
+        self.result = self.create_label('', QLineEdit) #QLineEdit("")
+        self.result.returnPressed.connect(self.check_result)
+        
+        self.operation = QHBoxLayout()
+        self.operation.addWidget(self.label1)
+        self.operation.addWidget(self.operator)
+        self.operation.addWidget(self.label2)
+        self.operation.addWidget(self.equal)
+        self.operation.addWidget(self.result)
+
+
+        self.button_ok = self.create_button('OK', self.check_result)
+        self.button_retry = self.create_button('Retry', self.clear_result)
+        self.button_next = self.create_button('Next', self.generate_random_number)
+
+        self.buttons = QHBoxLayout()
+        self.buttons.addWidget(self.button_ok)
+        self.buttons.addWidget(self.button_retry)
+        self.buttons.addWidget(self.button_next)
+
+        self.layout = QVBoxLayout()
+        self.layout.addLayout(self.operation)
+        self.layout.addLayout(self.buttons)
+
+        self.generate_random_number()
+
+        self.setLayout(self.layout)
+        self.setWindowTitle("Вычеслител")
+        self.setFixedSize(QSize(750, 500))
+        self.show()
+
+    def create_button(self, text, func):
+        button = QPushButton(text)
+        font = QFont()
+        font.setPointSize(50)
+        button.setFont(font)
+        button.setStyleSheet('background-color: orange; border-radius: 50%')
+        button.clicked.connect(func)
+        return button
+
+    def create_label(self,name,type = QLabel):
+
+        font = QFont()
+        font.setPointSize(50)
+        label = type(name)
+        label.setFont(font)
+        return label
+
+    def check_result(self):
+        v1 = int(self.label1.text())
+        v2 = int(self.label2.text())
+        op = self.operator.text()
+        if op == '+':
+            result = v1 + v2
+        else:
+            result = v1 - v2
     
-    def buy(self, valuta, amount, rate):
-        if valuta in self.data:
-            self.data[valuta].buy(amount, rate)
+        
 
-    
-    def sell(self, valuta, amount, rate):
-        if valuta in self.data:
-            self.data[valuta].sell(amount, rate)
-    
-    def add_valuta(self, name):
-        self.data[name] = Valuta(name)
-
-    def show_profit(self):
-        print()
-        total = 0
-        for name, valuta_obj in self.data.items():
-            total += valuta_obj.show_profit()
-        print('Total profit: ' , total)
-
-    def show_history(self):
-        print()
-        for name, obj in self.data.items():
-            obj.show_history()
+        if result == int(self.result.text()):
+            self.result.setStyleSheet("background-color: green;")
+        else:
+            self.result.setStyleSheet("background-color: red;") 
+ 
+        
 
 
-obmenka = Obemka('BEKObmen')
-obmenka.add_valuta('dollar')
-obmenka.buy('dollar', 100, 89.5)
-my_sleep()
-obmenka.buy('dollar',500, 89.6)
-my_sleep()
-obmenka.sell('dollar',100, 89.8)
-my_sleep()
-obmenka.buy('dollar',1000, 89.65)
-my_sleep()
-obmenka.sell('dollar',1500, 89.75)
+    def clear_result(self):
+        self.result.setText("")
+        self.result.setStyleSheet("background-color: white")
 
-obmenka.add_valuta('euro')
-obmenka.buy('euro', 100, 100)
-my_sleep()
-obmenka.sell('euro', 50, 101)
-my_sleep()
-obmenka.add_valuta('rubl')
-obmenka.buy('rubl', 1000, .89)
-obmenka.sell('rubl', 500, .91)
+    def generate_random_number(self):
+        self.result.setText("")
+        self.result.setStyleSheet("background-color : white")
+        val1 = randint(10, 99)
+        val2 = randint(10, 99)
 
+        op = ['+', '-'][randint(0,1)]
+        if op == '-':
+            if val1 < val2:
+                val1, val2 = val2, val1
+        
+        self.label1.setText(str(val1))
+        self.label2.setText(str(val2))
+        self.operator.setText(op)
+        
 
-obmenka.add_valuta('kzt')
-obmenka.buy('kzt', 1000, 0.03)
-my_sleep()
-obmenka.buy('kzt', 5000, 0.04)
-my_sleep()
-obmenka.sell('kzt', 2000, 0.05)
-
-obmenka.show_profit()
-obmenka.show_history()
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    counter = AIT()
+    sys.exit(app.exec_())
 
 
-
-
-
-
-
-
-
-
-
-    
-
-
-    
