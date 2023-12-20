@@ -114,7 +114,7 @@ def median(arr):
 #     return False
 
 
-# arr = [1, 2, 3, 5, 6, 7]
+# arr = [1, 2, 3, 5, 5, 5, 6, 7]
 # def get_value_index(arr, value):
 #     index = -1
 #     for i, val in enumerate(arr):
@@ -193,6 +193,7 @@ def median(arr):
 #         if x > min:
 #             min = x
 #     return min
+
 # ### GET MAX VALUE WHERE EACH ELEMENT CONTAINS THREE VALUES
 # def max3(arr):
 #     max = arr[0]
@@ -215,6 +216,7 @@ def median(arr):
 #         if x == s[i:i+len(x)]:
 #             return True
 #     return False
+
 # ### TEST
 # s = "emilbek bilgazyev"
 # x = "sbek"
@@ -232,6 +234,7 @@ def median(arr):
 # print(words)
 # print(len(words))
 # print('sails' in words)
+
 # ### GIVEN AN ARRAY OF WORDS RETURN EACH WORDS LENGTH
 # def get_word_lengths(words):
 #     arr = []
@@ -239,6 +242,7 @@ def median(arr):
 #         length = len(i)
 #         arr.append(len(i))
 #     return arr
+
 # ### COUNT HOW MANY WORDS IN AN ARRAY MATCH TO A GIVEN ARRAY
 # def count_words(arr, d):
 #     count = 0
@@ -253,6 +257,7 @@ def median(arr):
 # s = []
 # for x in set(arr):
 #     s.append([x, count_words(arr, x)])
+
 # ### GET MAX LENGTH
 # def get_max4(arr):
 #     max = arr[0]
@@ -1027,6 +1032,7 @@ def median(arr):
 #         cnt, x = my_random()
 #         cnt += 1
 #     return cnt, d
+
 
 # mx = 0
 # for i in range(1000000):
@@ -2028,114 +2034,443 @@ def median(arr):
 
 
 
-import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QLineEdit
-from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QFont
+# import sys
+# from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QHBoxLayout, QLineEdit
+# from PyQt5.QtCore import QSize
+# from PyQt5.QtGui import QFont
 
-from random import randint
+# from random import randint
 
-class AIT(QWidget):
+# class AIT(QWidget):
 
-    def __init__(self):
-        super().__init__()
+#     def __init__(self):
+#         super().__init__()
 
-        self.label1 = self.create_label("label 1")
-        self.label2 = self.create_label("label 2")
-        self.equal = self.create_label('=')
-        self.operator = self.create_label("")
+#         self.label1 = self.create_label("label 1")
+#         self.label2 = self.create_label("label 2")
+#         self.equal = self.create_label('=')
+#         self.operator = self.create_label("")
 
         
-        self.result = self.create_label('', QLineEdit) #QLineEdit("")
-        self.result.returnPressed.connect(self.check_result)
+#         self.result = self.create_label('', QLineEdit) #QLineEdit("")
+#         self.result.returnPressed.connect(self.check_result)
         
-        self.operation = QHBoxLayout()
-        self.operation.addWidget(self.label1)
-        self.operation.addWidget(self.operator)
-        self.operation.addWidget(self.label2)
-        self.operation.addWidget(self.equal)
-        self.operation.addWidget(self.result)
+#         self.operation = QHBoxLayout()
+#         self.operation.addWidget(self.label1)
+#         self.operation.addWidget(self.operator)
+#         self.operation.addWidget(self.label2)
+#         self.operation.addWidget(self.equal)
+#         self.operation.addWidget(self.result)
 
 
-        self.button_ok = self.create_button('OK', self.check_result)
-        self.button_retry = self.create_button('Retry', self.clear_result)
-        self.button_next = self.create_button('Next', self.generate_random_number)
+#         self.button_ok = self.create_button('OK', self.check_result)
+#         self.button_retry = self.create_button('Retry', self.clear_result)
+#         self.button_next = self.create_button('Next', self.generate_random_number)
 
-        self.buttons = QHBoxLayout()
-        self.buttons.addWidget(self.button_ok)
-        self.buttons.addWidget(self.button_retry)
-        self.buttons.addWidget(self.button_next)
+#         self.buttons = QHBoxLayout()
+#         self.buttons.addWidget(self.button_ok)
+#         self.buttons.addWidget(self.button_retry)
+#         self.buttons.addWidget(self.button_next)
 
-        self.layout = QVBoxLayout()
-        self.layout.addLayout(self.operation)
-        self.layout.addLayout(self.buttons)
+#         self.layout = QVBoxLayout()
+#         self.layout.addLayout(self.operation)
+#         self.layout.addLayout(self.buttons)
 
-        self.generate_random_number()
+#         self.generate_random_number()
 
-        self.setLayout(self.layout)
-        self.setWindowTitle("Вычеслител")
-        self.setFixedSize(QSize(750, 500))
-        self.show()
+#         self.setLayout(self.layout)
+#         self.setWindowTitle("Вычеслител")
+#         self.setFixedSize(QSize(750, 500))
+#         self.show()
 
-    def create_button(self, text, func):
-        button = QPushButton(text)
-        font = QFont()
-        font.setPointSize(50)
-        button.setFont(font)
-        button.setStyleSheet('background-color: orange; border-radius: 50%')
-        button.clicked.connect(func)
-        return button
+#     def create_button(self, text, func):
+#         button = QPushButton(text)
+#         font = QFont()
+#         font.setPointSize(50)
+#         button.setFont(font)
+#         button.setStyleSheet('background-color: orange; border-radius: 50%')
+#         button.clicked.connect(func)
+#         return button
 
-    def create_label(self,name,type = QLabel):
+#     def create_label(self,name,type = QLabel):
 
-        font = QFont()
-        font.setPointSize(50)
-        label = type(name)
-        label.setFont(font)
-        return label
+#         font = QFont()
+#         font.setPointSize(50)
+#         label = type(name)
+#         label.setFont(font)
+#         return label
 
-    def check_result(self):
-        v1 = int(self.label1.text())
-        v2 = int(self.label2.text())
-        op = self.operator.text()
-        if op == '+':
-            result = v1 + v2
-        else:
-            result = v1 - v2
+#     def check_result(self):
+#         v1 = int(self.label1.text())
+#         v2 = int(self.label2.text())
+#         op = self.operator.text()
+#         if op == '+':
+#             result = v1 + v2
+#         else:
+#             result = v1 - v2
     
         
 
-        if result == int(self.result.text()):
-            self.result.setStyleSheet("background-color: green;")
-        else:
-            self.result.setStyleSheet("background-color: red;") 
+#         if result == int(self.result.text()):
+#             self.result.setStyleSheet("background-color: green;")
+#         else:
+#             self.result.setStyleSheet("background-color: red;") 
  
         
 
 
-    def clear_result(self):
-        self.result.setText("")
-        self.result.setStyleSheet("background-color: white")
+#     def clear_result(self):
+#         self.result.setText("")
+#         self.result.setStyleSheet("background-color: white")
 
-    def generate_random_number(self):
-        self.result.setText("")
-        self.result.setStyleSheet("background-color : white")
-        val1 = randint(10, 99)
-        val2 = randint(10, 99)
+#     def generate_random_number(self):
+#         self.result.setText("")
+#         self.result.setStyleSheet("background-color : white")
+#         val1 = randint(10, 99)
+#         val2 = randint(10, 99)
 
-        op = ['+', '-'][randint(0,1)]
-        if op == '-':
-            if val1 < val2:
-                val1, val2 = val2, val1
+#         op = ['+', '-'][randint(0,1)]
+#         if op == '-':
+#             if val1 < val2:
+#                 val1, val2 = val2, val1
         
-        self.label1.setText(str(val1))
-        self.label2.setText(str(val2))
-        self.operator.setText(op)
+#         self.label1.setText(str(val1))
+#         self.label2.setText(str(val2))
+#         self.operator.setText(op)
         
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    counter = AIT()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+#     app = QApplication(sys.argv)
+#     counter = AIT()
+#     sys.exit(app.exec_())
+
+# from time import time
+# import sys
+
+# sys.setrecursionlimit(1000000)
+
+# def fib(n, d):
+#     # if n <= 1:
+#     #     return n
+#     if n in d:
+#         return d[n]
+#     #print("n=", n)
+#     d[n] = fib(n-1, d) + fib(n-2, d)
+#     return d[n]
+
+# # tic = time()
+# # d={0:0, 1:1}
+# # print(fib(10000, d))
+# # toc = time()
+# # print('time = ', (toc - tic))
 
 
+# arr=[11,7,8,3,6,4,2,1,0,9]
+# def my_sorted(arr):
+#     if len(arr)==0 or len(arr)==1:
+#         return arr
+#     left=[]
+#     last=arr[-1]
+#     central_arr=[]
+#     right=[]
+#     for i in arr:
+#         if i>last:
+#             right.append(i)
+#         if i<last:
+#             left.append(i)
+#         if i==last:
+#            central_arr.append(i)
+#     return my_sorted(left)+central_arr+my_sorted(right)
+# print(my_sorted(arr))
+
+
+# def check_border(h, w, r, c):
+#     return  0 <= r < h and 0 <= c < w
+
+# def mark_island(arr, i, j, memory):
+#     arr[i][j] = 0
+#     #memory.add((i,j))
+#     for r, c in [(i-1, j+0), (i+1, j+0), (i+0, j-1), (i+0, j+1)]:
+#         if check_border(arr, r, c) and arr[r][c] == 1:
+#             mark_island(arr, r, c, memory)
+
+# count = 1
+# memory = set()
+# for i in range(len(arr)):
+#     for j in range(len(arr[i])):
+#         if arr[i][j] == 1:
+#             mark_island(arr, 0, 0, memory)
+#             count += 1
+
+
+# def factorization(n):
+#     d={}
+#     i=2
+#     while n!=1:
+#         if n%i==0:
+#             if i not in d:
+#                 d[i]=0
+#             d[i]+=1
+#             n=n/i
+#         else:
+#             i+=1
+#     return d
+# print(factorization(150))      
+
+# def GCD(n1,n2):
+#     d1=factorization(n1)
+#     d2=factorization(n2)
+#     n=1
+#     keys=d1.keys()&d2.keys()
+#     for key in keys:
+#         for i in range(min(d1[key],d2[key])):
+#             n=n*key
+#     return n
+# def GCD2(n1,n2):
+#     if n2==0:
+#         return n1
+#     return GCD2(n2,n1%n2)
+# a = 11111111111111111111
+# b = 111111
+# print(GCD2(a, b))
+
+# # practice question 1
+# balans = 100000
+# monthly_payment = 8000
+# interest = 22
+# payoff_count = 15
+# ## find how many month will I pay to payoff the debt
+
+
+# # practice question 2
+# balance = 100000
+# interest = 22
+# payoff_count = 12
+# r = 22/12/100
+# n = payoff_count
+# monthly_payment = balance * (r*(1+r)**n) / ((1+r)**n-1)
+# print(monthly_payment)
+
+
+
+def median(arr):
+    arr = sorted(arr)
+    mid = len(arr) // 2    # int(len(arr)/2)
+    if mid*2 == len(arr):
+        return sum(arr[mid-1 : mid+1])/2
+    else:
+        return arr[mid]
+    
+
+# arr = [1, 6, 2, 8, 3, 1, 2, 0, 5, 6, 3, 5, 7, 9]
+
+
+# def recursive_median(arr, mid):
+#     n = arr[-1]
+#     arr = arr[:-1]
+#     left = []
+#     right = []
+#     .....
+
+
+# def median(arr):
+#     mid = len(arr) // 2
+#     if mid*2 == len(arr):
+#         m1 = recursive_median(arr, mid)
+#         m2 = recursive_median(arr, mid+1)
+#     else:
+#         return recursive_median(arr, mid)
+
+
+# med = sorted(arr[6])
+
+
+# arr = [1, 6, 2, 8, 3, 1, 2, 0, 5, 6, 3, 5, 7]
+# n = 2
+
+# arr = [3, 2, 0, 1, 1, 2, [3], 5, 5, 6, 6, 7, 8]
+
+# mid = 6
+
+
+# left__ = [1, 1, 2, 0, [2]]  [3, [3], 5, 5, 6, 6, 7, 8]
+# left = [1, 1, 2, 0]  
+# n = 2
+# right = [6, 8, 3, 5, 6, 3, 5, 7]
+# right = [3, [3], 5, 5, 6, 6, 7, 8]
+
+# mid = mid - (len(left) + 1) = 6 - (4 + 1) = 1
+
+# arr = [6, 8, 3, 5, 6, 3, 5, 7]
+# mid = 1
+# n = 8
+# left = [6, 3, 5, 6, 3, 5, 7]
+# right = []
+
+# arr = [6, 3, 5, 6, 3, 5, 7]
+# mid = 1
+# n = 5
+# left = [3, 5, 3]
+# right = [6, 6, 7]
+
+# arr = [3, 5, 3]
+# mid = 1
+# n = 5
+# left = [3, 3]
+# right = []
+
+# arr = [3, 3]
+# mid = 1
+# n = 3
+# left = [3]
+# right = []
+
+## a ** b
+def power(a, b):
+    if b == 0:
+        return 1, 0
+    elif b == 1:
+        return a, 0
+    elif b % 2 == 1:
+        x, cnt = power(a, b // 2)
+        return x * x * a, 2 + cnt
+    elif b % 2 == 0:
+        x, cnt = power(a, b // 2)
+        return x * x, 1 + cnt
+    
+
+def power2(a, b):
+    cnt = 0
+    res = 1
+    for i in range(b):
+        res *= a
+        cnt += 1
+    return res, cnt
+
+N = 100000
+# print(power(1, N))
+# print(power2(1, N))
+
+
+
+
+
+
+# 6 + 3 + 1
+# 5 + 5
+# 2 + 3 + 5
+# 1 + 1 ... 1
+
+def my_min(arr):
+    if len(arr)>0:
+        return min(arr)
+    else:
+        return (float('inf'), float('inf'))
+
+arr = [ 2, 3, 5, 6, 7]
+n = 10
+
+x = []
+def recur(n, arr, m):
+    if n == 0:
+        print(m)
+        return (len(m), m)
+    return my_min([recur(n - i, arr, m + [i]) for i in arr if i <= n])
+
+
+#print('Result', recur(n, arr, []))
+
+
+def recur_median(arr, index):
+    if len(arr) < index:
+        return -1
+    
+    p = arr[-1]
+    left = []
+    right = []
+    for i in arr[:-1]:
+        if i < p:
+            left.append(i)
+        else:
+            right.append(i)
+    if len(left) == index:
+        return p
+    elif len(left) > index:
+        return recur_median(left, index)
+    else:
+        return recur_median(right, index - len(left) - 1)
+
+
+def median2(arr):
+    n = len(arr)
+    if n % 2 == 1:
+        return recur_median(arr, n//2)
+    else:
+        a = recur_median(arr, n //2)
+        b = recur_median(arr, n//2 - 1)
+        return (a + b)/2
+
+
+arr = [1, 5, 3, 2, 5, 1, 8, 8, 9, 9]
+print(median(arr))
+print(median2(arr))
+
+class Student:
+    def __init__(self, name, last, year, gender) -> None:
+        self.name = name
+        self.last = last
+        self.year = year
+        self.gender = gender
+    
+    def show(self):
+        print(f'First name:{self.name}, Last name: {self.last}, Year of birth: {self.year}')
+    
+
+# students = []
+# students.append(Student('Bek', 'Bolsun', 2005, 'Male'))
+
+
+# #### 
+# sorted_students = sorted(students, key = lambda x:x.year)
+# N = 3
+# ## 1
+# sorted_students[-1].show()
+# ## 2
+# sorted_students[0].show()
+# ## 7
+# sorted_students[-N].show()
+# ages = [s.year for s in sorted_students]
+# ## 3
+# print(2023 - sum(ages)/len(ages))
+# ## 4
+# if len(ages) % 2:
+#     print(ages[len(ages)//2])
+# else:
+#     print(sum(ages[len(ages)//2-1:len(ages)//2+1])/2)
+# ## 5
+# from collections import defaultdict
+# d = defaultdict(int)
+# for s in students:
+#     d[s.gender] += 1
+# ## 6
+# sorted(students, key=lambda x:len(x.name))[-1].show()
+
+
+arr1 = [6, 9, 12]
+arr2 = [1, 2, 3, 7, 8, 10, 11]
+
+def merge(arr1, arr2, output=[]):
+    print('compare', arr1, arr2, output)
+    if not arr1:
+        return output + arr2
+    if not arr2:
+        return output + arr1
+    if arr1[0] < arr2[0]:
+        return merge(arr1[1:], arr2, output+arr1[0:1])
+    else:
+        return merge(arr1, arr2[1:], output+arr2[0:1])
+    
+
+    
+
+print(merge(arr1, arr2))
